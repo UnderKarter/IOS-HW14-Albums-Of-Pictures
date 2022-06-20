@@ -11,9 +11,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Альбомы"
+        
+        configureAddButton()
     }
 
+    private func configureAddButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: nil
+        )
+    }
 
 }
 
