@@ -7,24 +7,17 @@
 
 import UIKit
 
-struct Album {
-    let title: String
-    let array: [String]
-}
-
-var albums = [Album]()
-
 class AlbumsViewController: UIViewController {
     
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    lazy var collectionView: UICollectionView = {
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
+        collection.showsHorizontalScrollIndicator = false
+        collection.register(CustomCell.self, forCellWithReuseIdentifier: CustomCell.identifire)
         return collection
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,9 +27,8 @@ class AlbumsViewController: UIViewController {
         
         configureAddButton()
         setupCollectionView()
-        configureData()
     }
-
+    // Создание кнопки "+"
     private func configureAddButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
@@ -45,36 +37,69 @@ class AlbumsViewController: UIViewController {
         )
     }
     
-    func configureData() {
-        albums.append(Album(title: "Недавние",
-                            array: data))
-        albums.append(Album(title: "Инстаграмм",
-                            array: ["1","2","3"]))
-        albums.append(Album(title: "Избранное",
-                            array: ["1","2","3","10","9","7"]))
-        albums.append(Album(title: "Природа",
-                            array: ["6","4","3","2","9"]))
-        albums.append(Album(title: "Недавние",
-                            array: ["1","2","3"]))
-        albums.append(Album(title: "Недавние",
-                            array: ["1","2","3"]))
-        albums.append(Album(title: "Недавние",
-                            array: ["1","2","3"]))
-
-    }
-    
+    // Настройка UICollectionView
     func setupCollectionView() {
         
         view.addSubview(collectionView)
         
-        collectionView.backgroundColor = .white
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor, multiplier: 1.4).isActive = true
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(
+                equalTo: view.topAnchor,
+                constant: MetricsAlbumsViewConroller.collectionViewTopAnchorConstant),
+            collectionView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: MetricsAlbumsViewConroller.collectionViewLeadingAnchorConstant),
+            collectionView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: MetricsAlbumsViewConroller.collectionViewTrailingAnchorConstant),
+            collectionView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
         
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
+            
+            return self.layoutSectionCellAlbumsViewCell()
+        }
+    }
+    func layoutSectionCellAlbumsViewCell() -> NSCollectionLayoutSection {
+        
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(MetricsAlbumsViewConroller.collectionLayoutItemSizeFractionalWidth),
+            heightDimension: .absolute(MetricsAlbumsViewConroller.collectionLayoutItemSizeFractionalAbsolute))
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 60, trailing: 0)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(MetricsAlbumsViewConroller.collectionLayoutItemSizeFractionalWidth),
+            heightDimension: .absolute(MetricsAlbumsViewConroller.collectionLayoutGroupSizeFractionalAbsolute)
+        )
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 10, leading: 5, bottom: 5, trailing: 5)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
+    
+    private struct MetricsAlbumsViewConroller {
+        static let collectionViewTopAnchorConstant: CGFloat = 5
+        static let collectionViewLeadingAnchorConstant: CGFloat = 0
+        static let collectionViewTrailingAnchorConstant: CGFloat = 0
+        
+        static let collectionLayoutSizeFractionalWidth: CGFloat = 1
+        static let collectionLayoutSizeFractionalHeight: CGFloat = 1
+        static let collectionLayoutSizeAbsolute: CGFloat = 50
+        static let collectionLayoutItemSizeFractionalWidth: CGFloat = 180
+        static let collectionLayoutItemSizeFractionalAbsolute: CGFloat = 240
+        static let collectionLayoutGroupSizeFractionalAbsolute: CGFloat = 480
     }
 }
 
