@@ -14,15 +14,15 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
                       height: collectionView.frame.width/2.2)
     }
     
+    // кол-во объектов в секции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums.count
+        return AlbumModel.firstSection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
-        cell.backgroundColor = .red
-        cell.clipsToBounds = true
-        cell.layer.cornerRadius = 8
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.identifire, for: indexPath) as! CustomCell
+        cell.data = AlbumModel.firstSection[indexPath.row]
+        
         return cell
     }
 }
