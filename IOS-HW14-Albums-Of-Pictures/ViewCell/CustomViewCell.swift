@@ -61,6 +61,7 @@ class CustomCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func layoutSubviews() {
         setupHierarchy()
         setupLayout()
@@ -94,7 +95,7 @@ class CustomCell: UICollectionViewCell {
     private struct MetricData {
         static let labelFont = UIFont(name: "system", size: 16)
         
-        static let imageTopAnchorConstant: CGFloat = 5
+        static let imageTopAnchorConstant: CGFloat = 0
         static let imageLeadingAnchorConstant: CGFloat = 0
         static let imageTrailingAnchorConstant: CGFloat = -8
 

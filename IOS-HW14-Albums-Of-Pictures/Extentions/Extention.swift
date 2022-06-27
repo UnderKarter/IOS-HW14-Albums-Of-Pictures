@@ -9,11 +9,6 @@ import UIKit
 
 extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/2.2,
-                      height: collectionView.frame.width/2.2)
-    }
-    
     // кол-во объектов в секции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return AlbumModel.firstSection.count
@@ -24,5 +19,13 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
         cell.data = AlbumModel.firstSection[indexPath.row]
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: HeaderCustomCell.identifier,
+            for: indexPath) as! HeaderCustomCell
+        return header
     }
 }
