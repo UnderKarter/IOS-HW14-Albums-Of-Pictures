@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C80BF986286B77EE00837B15 /* CustomSecondViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80BF985286B77EE00837B15 /* CustomSecondViewCell.swift */; };
+		C80BF988286B79CA00837B15 /* HeaderSecondSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80BF987286B79CA00837B15 /* HeaderSecondSection.swift */; };
 		C84219F52860A61F0051DBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84219F42860A61F0051DBA9 /* AppDelegate.swift */; };
 		C84219F72860A61F0051DBA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84219F62860A61F0051DBA9 /* SceneDelegate.swift */; };
 		C84219F92860A61F0051DBA9 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84219F82860A61F0051DBA9 /* AlbumsViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C80BF985286B77EE00837B15 /* CustomSecondViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecondViewCell.swift; sourceTree = "<group>"; };
+		C80BF987286B79CA00837B15 /* HeaderSecondSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSecondSection.swift; sourceTree = "<group>"; };
 		C84219F12860A61F0051DBA9 /* IOS-HW14-Albums-Of-Pictures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS-HW14-Albums-Of-Pictures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C84219F42860A61F0051DBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C84219F62860A61F0051DBA9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 			children = (
 				C8421A152860B1690051DBA9 /* CustomViewCell.swift */,
 				C87ACED72868D3F900FDDBC2 /* HeaderCustomCell.swift */,
+				C80BF985286B77EE00837B15 /* CustomSecondViewCell.swift */,
+				C80BF987286B79CA00837B15 /* HeaderSecondSection.swift */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -213,9 +219,11 @@
 				C87ACED82868D3FA00FDDBC2 /* HeaderCustomCell.swift in Sources */,
 				C84219F92860A61F0051DBA9 /* AlbumsViewController.swift in Sources */,
 				C8421A102860AED80051DBA9 /* ViewController.swift in Sources */,
+				C80BF988286B79CA00837B15 /* HeaderSecondSection.swift in Sources */,
 				C84219F52860A61F0051DBA9 /* AppDelegate.swift in Sources */,
 				C8421A1D2860D4FE0051DBA9 /* Model.swift in Sources */,
 				C8421A162860B1690051DBA9 /* CustomViewCell.swift in Sources */,
+				C80BF986286B77EE00837B15 /* CustomSecondViewCell.swift in Sources */,
 				C84219F72860A61F0051DBA9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

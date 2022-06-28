@@ -14,9 +14,12 @@ class AlbumsViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.showsHorizontalScrollIndicator = false
-        collection.register(CustomCell.self, forCellWithReuseIdentifier: CustomCell.identifire)
         
+        collection.register(CustomCell.self, forCellWithReuseIdentifier: CustomCell.identifire)
         collection.register(HeaderCustomCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCustomCell.identifier)
+        
+        collection.register(CustomSecondViewCell.self, forCellWithReuseIdentifier: CustomSecondViewCell.identifire)
+        collection.register(HeaderSecondSection.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderSecondSection.identifier)
         
         return collection
     }()
@@ -65,7 +68,12 @@ class AlbumsViewController: UIViewController {
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             
-            return self.layoutSectionCellAlbumsViewCell()
+            switch sectionNumber {
+            case 0: return self.layoutSectionCellAlbumsViewCell()
+            case 1: return self.layoutSectionSecondViewCell()
+            default:
+                return self.layoutSectionSecondViewCell()
+            }
         }
     }
     func layoutSectionCellAlbumsViewCell() -> NSCollectionLayoutSection {
@@ -102,9 +110,43 @@ class AlbumsViewController: UIViewController {
         return section
     }
     
+    func layoutSectionSecondViewCell() -> NSCollectionLayoutSection {
+
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(Metrics.collectionLayoutSizeFractionalWidth),
+            heightDimension: .absolute(Metrics.collectionLayoutSizeAbsolute))
+
+        let HeaderSection = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(Metrics.collectionLayoutSizeFractionalWidth),
+            heightDimension: .fractionalHeight(Metrics.collectionLayoutSizeFractionalHeight))
+
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 60, trailing: 0)
+
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(Metrics.collectionLayoutItemSizeFractionalWidth),
+            heightDimension: .absolute(Metrics.collectionLayoutItemSizeFractionalAbsolute)
+        )
+
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [HeaderSection]
+        section.contentInsets = .init(top: 10, leading: 0, bottom: 5, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
+    
     private struct Metrics {
-        static let collectionViewTopAnchorConstant: CGFloat = 0
-        static let collectionViewLeadingAnchorConstant: CGFloat = 0
+        static let collectionViewTopAnchorConstant: CGFloat = 10
+        static let collectionViewLeadingAnchorConstant: CGFloat = 10
         static let collectionViewTrailingAnchorConstant: CGFloat = 0
         
         static let collectionLayoutSizeFractionalWidth: CGFloat = 1
