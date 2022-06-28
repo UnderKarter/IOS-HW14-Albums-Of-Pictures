@@ -53,7 +53,6 @@ class HeaderCustomCell : UICollectionReusableView {
         super.layoutSubviews()
     }
     
-    
     func setupHierarchy() {
         addSubview(container)
         container.addSubview(header)
