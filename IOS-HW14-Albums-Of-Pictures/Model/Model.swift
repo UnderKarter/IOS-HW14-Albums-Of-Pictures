@@ -30,4 +30,16 @@ extension AlbumModel {
         AlbumModel(title: "Фап-фап", image: UIImage(named: "9"), count: 9),
         AlbumModel(title: "Люди", image: UIImage(named: "7"), count: 24)
     ]
+    
+    static let thirdSection = [
+        AlbumModel(title: "Видео", image: UIImage(systemName: "video"), count: 39),
+        AlbumModel(title: "Селфи", image: UIImage(systemName: "person.crop.rectangle"), count: 267),
+        AlbumModel(title: "Фото Live Photos", image: UIImage(systemName: "circle.hexagongrid.circle"), count: 158),
+        AlbumModel(title: "Портреты", image: UIImage(systemName: "cube"), count: 6),
+        AlbumModel(title: "Панорамы", image: UIImage(systemName: "pano"), count: 33),
+        AlbumModel(title: "Таймлапс", image: UIImage(systemName: "timelapse"), count: 1),
+        AlbumModel(title: "Снимки экрана", image: UIImage(systemName: "camera.viewfinder"), count: 430),
+        AlbumModel(title: "Запись экрана", image: UIImage(systemName: "record.circle"), count: 11),
+        AlbumModel(title: "Анимированные", image: UIImage(systemName: "rhombus"), count: 3)
+    ]
 }

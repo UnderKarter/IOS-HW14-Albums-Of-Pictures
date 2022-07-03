@@ -10,7 +10,7 @@ import UIKit
 extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     // кол-во объектов в секции
@@ -22,6 +22,8 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
             numberCell = AlbumModel.firstSection.count
         case 1:
             numberCell = AlbumModel.secondSection.count
+        case 2:
+            numberCell = AlbumModel.thirdSection.count
         default:
             break
         }
@@ -36,9 +38,14 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
             return firstCell
             
         case 1:
-            let secondCell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCell.identifire, for: indexPath) as! CustomCell
+            let secondCell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomSecondViewCell.identifire, for: indexPath) as! CustomSecondViewCell
             secondCell.data = AlbumModel.secondSection[indexPath.row]
             return secondCell
+            
+        case 2:
+            let thirdCell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomThirdViewCell.identifire, for: indexPath) as! CustomThirdViewCell
+            thirdCell.data = AlbumModel.thirdSection[indexPath.row]
+            return thirdCell
         default:
             return UICollectionViewCell()
         }
@@ -50,8 +57,8 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
         case 0:
             let firstHeader = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: HeaderCustomCell.identifier,
-                for: indexPath) as! HeaderCustomCell
+                withReuseIdentifier: HeaderCustomSection.identifier,
+                for: indexPath) as! HeaderCustomSection
             return firstHeader
         case 1:
             let secondHeader = collectionView.dequeueReusableSupplementaryView(
@@ -59,6 +66,13 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
                 withReuseIdentifier: HeaderSecondSection.identifier,
                 for: indexPath) as! HeaderSecondSection
             return secondHeader
+            
+        case 2:
+            let thirdHeader = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: HeaderThirdSection.identifier,
+                for: indexPath) as! HeaderThirdSection
+            return thirdHeader
         default:
             return UICollectionReusableView()
         }
