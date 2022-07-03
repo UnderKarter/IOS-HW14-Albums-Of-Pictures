@@ -1,5 +1,5 @@
 //
-//  HeaderCustomCell.swift
+//  HeaderCustomSection.swift
 //  IOS-HW14-Albums-Of-Pictures
 //
 //  Created by temp user on 26.06.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HeaderCustomCell : UICollectionReusableView {
+class HeaderCustomSection : UICollectionReusableView {
     
     static let identifier = "HeaderCollectionCell"
     

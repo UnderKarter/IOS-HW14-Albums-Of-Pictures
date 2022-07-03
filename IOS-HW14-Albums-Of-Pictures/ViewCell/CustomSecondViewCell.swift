@@ -17,7 +17,7 @@ class CustomSecondViewCell: UICollectionViewCell {
                 return
             }
             image.image = data.image
-            lable.text = data.title
+            label.text = data.title
             count.text = String(data.count)
         }
     }
@@ -33,9 +33,9 @@ class CustomSecondViewCell: UICollectionViewCell {
     }()
     
     // Название альбома
-    lazy var lable: UILabel = {
+    lazy var label: UILabel = {
         let label = UILabel()
-        label.font = MetricData.labelFont
+        label.font = Metrics.labelFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = .black
@@ -46,7 +46,7 @@ class CustomSecondViewCell: UICollectionViewCell {
     lazy var count: UILabel = {
         let count = UILabel()
         count.textColor = .systemGray3
-        count.font = MetricData.labelFont
+        count.font = Metrics.labelFont
         count.translatesAutoresizingMaskIntoConstraints = false
         count.textAlignment = .left
         return count
@@ -68,7 +68,7 @@ class CustomSecondViewCell: UICollectionViewCell {
     }
     
     private func setupHierarchy() {
-        [image, lable, count].forEach { contentView.addSubview($0) }
+        [image, label, count].forEach { contentView.addSubview($0) }
     }
     
     // Настройка расположения
@@ -76,27 +76,27 @@ class CustomSecondViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                            constant: MetricData.imageTopAnchorConstant),
+                                            constant: Metrics.imageTopAnchorConstant),
             image.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             image.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                constant: MetricData.imageLeadingAnchorConstant),
+                                                constant: Metrics.imageLeadingAnchorConstant),
             image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                 constant: MetricData.imageTrailingAnchorConstant),
-            lable.topAnchor.constraint(equalTo: image.bottomAnchor, constant: MetricData.labelTopAnchorConstant),
-            lable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: MetricData.labelLeadingAnchorConstant),
-            lable.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+                                                 constant: Metrics.imageTrailingAnchorConstant),
+            label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Metrics.labelTopAnchorConstant),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Metrics.labelLeadingAnchorConstant),
+            label.widthAnchor.constraint(equalTo: contentView.widthAnchor),
 
-            count.topAnchor.constraint(equalTo: lable.bottomAnchor, constant: 2),
-            lable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            lable.widthAnchor.constraint(equalTo: contentView.widthAnchor)
+            count.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 2),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.widthAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
     }
     
-    private struct MetricData {
+    private struct Metrics {
         static let labelFont = UIFont(name: "system", size: 16)
         
-        static let imageTopAnchorConstant: CGFloat = 5
-        static let imageLeadingAnchorConstant: CGFloat = 10
+        static let imageTopAnchorConstant: CGFloat = 0
+        static let imageLeadingAnchorConstant: CGFloat = 0
         static let imageTrailingAnchorConstant: CGFloat = -8
 
         static let labelTopAnchorConstant: CGFloat = 8
