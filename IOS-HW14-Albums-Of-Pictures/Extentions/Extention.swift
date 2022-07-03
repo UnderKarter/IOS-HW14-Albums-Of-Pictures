@@ -10,7 +10,7 @@ import UIKit
 extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     // кол-во объектов в секции
@@ -24,6 +24,8 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
             numberCell = AlbumModel.secondSection.count
         case 2:
             numberCell = AlbumModel.thirdSection.count
+        case 3:
+            numberCell = AlbumModel.fourthSection.count
         default:
             break
         }
@@ -46,6 +48,11 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
             let thirdCell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomThirdViewCell.identifire, for: indexPath) as! CustomThirdViewCell
             thirdCell.data = AlbumModel.thirdSection[indexPath.row]
             return thirdCell
+            
+        case 3:
+            let fourthCell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomFourthViewCell.identifire, for: indexPath) as! CustomFourthViewCell
+            fourthCell.data = AlbumModel.fourthSection[indexPath.row]
+            return fourthCell
         default:
             return UICollectionViewCell()
         }
@@ -73,6 +80,13 @@ extension AlbumsViewController: UICollectionViewDelegateFlowLayout, UICollection
                 withReuseIdentifier: HeaderThirdSection.identifier,
                 for: indexPath) as! HeaderThirdSection
             return thirdHeader
+            
+        case 3:
+            let fourthHeader = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: HeaderFourthSection.identifier,
+                for: indexPath) as! HeaderFourthSection
+            return fourthHeader
         default:
             return UICollectionReusableView()
         }
