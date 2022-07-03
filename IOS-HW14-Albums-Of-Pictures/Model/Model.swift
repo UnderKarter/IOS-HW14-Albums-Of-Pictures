@@ -42,4 +42,10 @@ extension AlbumModel {
         AlbumModel(title: "Запись экрана", image: UIImage(systemName: "record.circle"), count: 11),
         AlbumModel(title: "Анимированные", image: UIImage(systemName: "rhombus"), count: 3)
     ]
+    
+    static let fourthSection = [
+        AlbumModel(title: "Импортированные", image: UIImage(systemName: "square.and.arrow.down"), count: 23),
+        AlbumModel(title: "Скрытые", image: UIImage(systemName: "eye.slash"), count: 0),
+        AlbumModel(title: "Недавно удаленные", image: UIImage(systemName: "trash"), count: 36)
+    ]
 }
